@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Controller">
+    <top>
+        <ToolBar prefHeight="29.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
+            <items>
+                <CheckBox fx:id="scanKey" mnemonicParsing="false" selected="true" text="Scan Key?">
+                    <tooltip>
+                        <Tooltip text="While selected, all scanned sheets will be saved as keys" />
+                    </tooltip></CheckBox>
+                <Button fx:id="startCam" layoutX="103.0" layoutY="10.0" mnemonicParsing="false" onAction="#startCamera" text="Start Camera">
+                    <tooltip>
+                        <Tooltip text="Starts camera for scanning" />
+                    </tooltip></Button>
+                <TextField fx:id="output" prefHeight="39.0" prefWidth="400.0">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </TextField>
+                <CheckBox fx:id="soundEnabled" mnemonicParsing="false" selected="true" text="Sound?">
+                    <tooltip>
+                        <Tooltip text="When selected, tones will play to indicate a successful scan or an unsuccessful scan" />
+                    </tooltip></CheckBox>
+                <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="7.0" />
+                <Button layoutX="544.0" layoutY="14.0" mnemonicParsing="false" onAction="#createNew" text="Create New Workbook">
+                    <tooltip>
+                        <Tooltip text="Any scans once selected will be added to this file" wrapText="true" />
+                    </tooltip></Button>
+                <Button layoutX="697.0" layoutY="14.0" mnemonicParsing="false" onAction="#addToExisting" text="Add To Existing Workbook">
+                    <tooltip>
+                        <Tooltip text="Any scans will be added to the selected spreadsheet" />
+                    </tooltip></Button>
+                <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="7.0" />
+                <MenuButton fx:id="dropDownPrintMenu" mnemonicParsing="false" text="Print Sheets">
+                    <items>
+                        <MenuItem fx:id="twoSheets" mnemonicParsing="false" onAction="#printTwoSheets" text="2 Half Sheets, 50 Questions Each" />
+                        <MenuItem fx:id="oneSheet" mnemonicParsing="false" onAction="#printOneSheet" text="Full Sheet, 50 Questions" />
+                    </items>
+               <tooltip>
+                  <Tooltip text="Select a print option from the dropdown menu" />
+               </tooltip>
+                </MenuButton>
+            </items>
+        </ToolBar>
+    </top>
+    <center>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="TOP_LEFT">
+            <children>
+                <ImageView fx:id="currentFrame" fitHeight="1000.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <viewport>
+                  <Rectangle2D />
+               </viewport></ImageView>
+            </children>
+        </AnchorPane>
+    </center>
+    <left>
+        <SplitPane dividerPositions="0.5" maxWidth="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefWidth="314.0" BorderPane.alignment="CENTER">
+            <items>
+                <TableView fx:id="responseTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" prefWidth="312.0">
+                    <columns>
+                        <TableColumn fx:id="versionCol" prefWidth="78.0" resizable="false" text="Version" />
+                        <TableColumn fx:id="correctCol" prefWidth="78.0" resizable="false" text="# Correct" />
+                        <TableColumn fx:id="percentCol" prefWidth="78.0" resizable="false" text="\% Correct" />
+                        <TableColumn fx:id="idCol" prefWidth="78.0" resizable="false" text="ID" />
+                    </columns>
+                </TableView>
+                <ImageView fx:id="originalImage" fitHeight="300.0" fitWidth="312.0" pickOnBounds="true" preserveRatio="true" />
+            </items>
+        </SplitPane>
+    </left>
+</BorderPane>
